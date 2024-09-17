@@ -1,12 +1,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  future: {
+    compatibilityVersion: 4,
+  },
   nitro: {
     experimental: {
       tasks: true,
     },
   },
-  srcDir: 'src/',
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@vee-validate/nuxt', '@nuxtjs/google-fonts', 'nuxt-cropper'],
+  routeRules: {
+    '/admin/**': { ssr: false },
+  },
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+    '@vee-validate/nuxt',
+    '@nuxtjs/google-fonts',
+    'nuxt-cropper',
+    'radix-vue/nuxt',
+  ],
   googleFonts: {
     families: {
       'Noto+Sans': [400, 500, 600, 700],
@@ -14,7 +26,6 @@ export default defineNuxtConfig({
     },
     useStylesheet: true,
   },
-  css: ['~/assets/css/style.css', '~/assets/css/additional-styles/utility-patterns.css'],
   devtools: { enabled: true },
   /**
    * Sensible defaults, overriden by env vars.
@@ -30,7 +41,7 @@ export default defineNuxtConfig({
     storage: {
       engine: 'local',
       local: {
-        baseDir: '/tmp/vidur-jobs-dev',
+        baseDir: '/var/lib/vidur/data',
       },
       s3: {
         accessKeyId: '',
@@ -52,7 +63,12 @@ export default defineNuxtConfig({
     },
     public: {
       origin: 'http://localhost:3001',
-    }
+      github: 'https://github.com/profilecity/vidur',
+      discord: 'https://discord.gg/9ms5uYF8xF',
+      twitter: 'https://x.com/profilecityhq',
+      vidur: 'https://profilecity.xyz/vidur',
+      version: 'v0.0.1',
+    },
   },
   compatibilityDate: '2024-07-31',
 });
